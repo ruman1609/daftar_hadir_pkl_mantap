@@ -89,8 +89,8 @@ class RegisterController extends Controller
      protected function createAdmin(Request $req){
        $admin = new Admin;
        $admin->user = $req->user;
-       $admin->pass = Hash::make($req->pass);
-       while(Hash::needsRehash($admin->pass)){$admin->pass = Hash::make($req->pass);}
+       $admin->password = Hash::make($req->password);
+       while(Hash::needsRehash($admin->password)){$admin->password = Hash::make($req->password);}
        $admin->save();
        return redirect("/login/admin");
      }

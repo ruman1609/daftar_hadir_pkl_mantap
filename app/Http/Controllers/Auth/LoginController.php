@@ -51,12 +51,10 @@ class LoginController extends Controller
       return view("admin.login", ["url"=>"admin"]);
     }
     public function adminLogin(Request $req){
-      // $admin = Admin::find($req->user);
-      // if(Hash::check($req->pass, $admin->pass)){
-      //   $req->pass = $admin->pass;
-      //   $auth = Admin::where("user", "=", $req->user)->where("pass", "=", $req->pass)->first();
-      //   Auth::login($auth);
-      //   return Redirect::to("admin");
+      $admin = Admin::find($req->user);
+      // if(Hash::check($req->password, $admin->password)){
+      //   $req->password = $admin->password;
+      //   dd($req->password);
       // }
       if(Auth::guard("admin")->attempt(["user"=>$req->user, "password"=>$req->password])){
         return redirect()->intended("/admin");

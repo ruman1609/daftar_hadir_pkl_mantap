@@ -14,8 +14,8 @@ class CreateTableKaryawan extends Migration
     public function up()
     {
         Schema::create('karyawan', function (Blueprint $table) {
-          $table->string("id", 11);
-          $table->text("pass");
+          $table->string("user", 11);
+          $table->text("password");
           $table->string("nama", 101);
           $table->boolean("kelamin");
           $table->text("alamat");
@@ -24,7 +24,7 @@ class CreateTableKaryawan extends Migration
           $table->text("foto");
           $table->timestamps();
           $table->rememberToken();
-          $table->primary("id");
+          $table->primary("user");
         });
     }
 

@@ -15,7 +15,7 @@ class CreateTableAdmin extends Migration
     {
         Schema::create('admin', function (Blueprint $table) {
           $table->string("user", 100);
-          $table->text("pass");
+          $table->text("password");
           $table->timestamps();
           $table->primary("user");
         });

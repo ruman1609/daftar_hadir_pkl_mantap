@@ -9,7 +9,7 @@
     <form action="{{route("regisAdmin")}}" method="post">
       @csrf
       <input type="text" name="user" value="admin@admin.com"> <br>
-      <input type="password" name="pass" value="admin"> <br>
+      <input type="password" name="password" value="admin"> <br>
       <input type="submit" value="SUBMIT!">
     </form>
   </body>
