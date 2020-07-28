@@ -37,9 +37,8 @@ Route::post("register/admin", "Auth\RegisterController@createAdmin")->name("pros
 Route::middleware("auth:admin")->group(function(){
   Auth::routes();
   Route::view("/admin", "admin.dashboardAdmin");
-  Route::get("/asw", function(){
-    return "ANJING KAMU!";
-  });
+  Route::get("/pengumuman", "PengumumanController@show");
+  Route::post("/pengumuman", "PengumumanController@post");
   Route::resource("/buat/karyawan", "AdministratorController");
 });
 Route::middleware("auth:karyawan")->group(function(){

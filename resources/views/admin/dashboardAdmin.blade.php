@@ -19,6 +19,7 @@
         <li><a href="/buat/karyawan/create">Daftarkan Karyawan Baru</a></li>
         <li><a href="/buat/karyawan">Edit Data Karyawan</a></li>
         <li><a href="/rekap">Rekapitulasi Data Karyawan</a></li>
+        <li><a href="/pengumuman">Set Pengumuman</a></li>
         <li><a href="/logout">LOG OUT</a></li>
       </ol>
     </nav>
