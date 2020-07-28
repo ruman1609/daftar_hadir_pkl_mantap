@@ -1,3 +1,8 @@
+@if(session()->has("berhasil"))
+<script type="text/javascript">
+  alert("{{session()->get("berhasil")}}");
+</script>
+@endif
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

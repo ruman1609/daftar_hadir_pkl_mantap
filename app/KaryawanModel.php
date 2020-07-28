@@ -10,7 +10,7 @@ class KaryawanModel extends User
   use Notifiable;
   protected $guard = "karyawan";
   protected $table = "karyawan";
-  protected $primaryKey = "id";
+  protected $primaryKey = "user";
   protected $keyType = "string";
   protected $fillable = [
     "user", "password", "nama", "kelamin", "alamat",
@@ -18,5 +18,5 @@ class KaryawanModel extends User
   ];
   protected $hidden =[
     "password", "remember_token"
-  ]
+  ];
 }

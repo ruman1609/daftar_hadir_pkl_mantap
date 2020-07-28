@@ -8,7 +8,7 @@
   <body>
     <form action="/buat/karyawan" method="post" enctype="multipart/form-data">
       @csrf
-      <input type="text" id="user" name="user" placeholder="Username"> <br>
+      <input type="number" id="user" name="user" placeholder="Username"> <br>
       <input type="password" id="password" name="password" placeholder="Password"> <br>
       <input type="text" id="nama" name="nama" placeholder="Nama Karyawan"> <br>
       <select name="kelamin" id="kelamin">
@@ -23,5 +23,12 @@
       <input type="file" name="foto" id="foto"> <br><br>
       <input type="submit" value="DAFTAR!">
     </form>
+    @if(count($errors)>0)
+      <ul class="error">
+        @foreach($errors->all() as $e)
+        <li>{{$e}}</li><br>
+        @endforeach
+      </ul>
+    @endif
   </body>
 </html>
