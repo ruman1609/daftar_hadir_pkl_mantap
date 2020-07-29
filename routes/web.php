@@ -36,10 +36,12 @@ Route::post("register/admin", "Auth\RegisterController@createAdmin")->name("pros
 
 Route::middleware("auth:admin")->group(function(){
   Auth::routes();
-  Route::view("/admin", "admin.dashboardAdmin");
+  Route::get("/admin", "DashboardAdminController@first");
+  Route::resource("rekap", "RekapController");
+  Route::get("/rekap/{id}/{month}", "RekapController@liatBulan");
   Route::get("/pengumuman", "PengumumanController@show");
   Route::post("/pengumuman", "PengumumanController@post");
-  Route::resource("/buat/karyawan", "AdministratorController");
+  Route::resource("buat/karyawan", "AdministratorController");
 });
 Route::middleware("auth:karyawan")->group(function(){
   Auth::routes();

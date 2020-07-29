@@ -3,6 +3,11 @@
   alert("{{session()->get("berhasil")}}");
 </script>
 @endif
+@if(session()->has("dbERROR"))
+<script type="text/javascript">
+  alert("{{session()->get("dbERROR")}}");
+</script>
+@endif
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

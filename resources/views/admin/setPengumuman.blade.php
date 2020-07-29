@@ -12,5 +12,8 @@
       <textarea name="isi" id="isi" rows="8" cols="80" style="resize: none" placeholder="Isi Pengumuman"></textarea><br>
       <input type="submit" value="SUBMIT">
     </form>
+    @if(session()->has("error"))
+      <h5>{{session()->get("error")}}</h5>
+    @endif
   </body>
 </html>

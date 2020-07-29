@@ -26,7 +26,7 @@ class PengumumanController extends Controller
       return redirect("/admin")->with("berhasil", "Pengumuman Berhasil di Update");
     } catch (\Exception $e) {
       DB::rollback();
-      return back()->with("dbError", "Terjadi kesalahan");
+      return back()->with("error", $e->getMessage());
     }
 
   }

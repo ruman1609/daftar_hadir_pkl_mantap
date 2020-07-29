@@ -18,7 +18,6 @@ class CreateAbsenTable extends Migration
           $table->string("id_karyawan");
           $table->boolean("kehadiran");
           $table->timestamps();
-          $table->primary("tanggal_absen");
         });
     }
 

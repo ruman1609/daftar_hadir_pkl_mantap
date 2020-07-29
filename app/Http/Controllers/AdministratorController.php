@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\KaryawanModel as Karyawan;
+use App\AbsenModel as Absen;
 
 class AdministratorController extends Controller
 {
@@ -20,7 +21,7 @@ class AdministratorController extends Controller
     {
       DB::beginTransaction();
       try {
-        $data = Karyawan::paginate(10);
+        $data = Karyawan::orderBy("user", "asc")->paginate(10);
         $ada = (count($data) > 0) ? true : false;
         DB::commit();
         return view("admin.dataKaryawan", ["data"=>$data, "ada" => $ada]);
@@ -28,7 +29,6 @@ class AdministratorController extends Controller
         DB::rollback();
         return back()->with("dbError", "Terjadi Kesalahan");
       }
-
     }
 
     /**
@@ -58,7 +58,7 @@ class AdministratorController extends Controller
           "alamat" => ["required"],
           "tanggal_lahir" => ["required"],
           "nomor_telepon" => ["required", "min:9", "max: 13"],
-          "foto" => ["mimes:jpeg,png", "required", "dimensions:ratio=0.6666666666666667"]
+          "foto" => ["mimes:jpeg,png", "required"]
         ]);  // foto dimensions belum sempurna
         $filename = $req->user.".".$req->foto->getClientOriginalExtension();
         $req->foto->storeAs("\public", $filename);
@@ -78,8 +78,7 @@ class AdministratorController extends Controller
         return redirect("/admin")->with("berhasil", "Data Karyawan berhasil diinput");
       }catch (\Exception $e) {
         DB::rollback();
-        dd($e);
-        return back()->with("dbError", "Terjadi kesalahan saat menyimpan silahkan coba lagi.");
+        return back()->with("dbError", $e->getMessage());
       }
 
     }
