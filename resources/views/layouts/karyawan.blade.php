@@ -1,24 +1,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @yield('title')	
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{url('/own/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{url('/own/css/dashboard.css')}}">
     <link href="{{url('/own/css/material.css')}}" rel="stylesheet">
 </head>
 <body>
-  
+
     <!--header-->
     @include('layouts.module.header-karyawan')
     <!--sidebar-->
     <div class="app-body" id="dw">
         <div class="sidebar">
             @include('layouts.module.sidebar-karyawan')
-          
-            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
         </div>
         @yield('content')
-      
+
     </div>
     <!--footer-->
     <footer class="app-footer">

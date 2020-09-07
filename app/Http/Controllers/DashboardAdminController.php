@@ -13,7 +13,7 @@ class DashboardAdminController extends Controller
   public function first(){
     DB::beginTransaction();
     try {
-      $data = Karyawan::paginate(10);
+      $data = Karyawan::all();
       foreach($data as $d){
         $abs = Absen::get();
         if(count($abs)>0){
@@ -22,7 +22,7 @@ class DashboardAdminController extends Controller
         }else{$this->absenBaru($d);}
       }
       DB::commit();
-      return view('admin.dashboardAdmin', compact('data'));
+      return view("admin.dashboardAdmin", ["data" => count($data)]);
     } catch (\Exception $e) {
       DB::rollback();
       return view("admin.dashboardAdmin")->with("dbERROR", "Database tidak berjalan");
@@ -34,5 +34,21 @@ class DashboardAdminController extends Controller
     $baru->id_karyawan = $d->user;
     $baru->kehadiran = false;
     $baru->save();
+  }
+  public function buatAbsen(){
+    DB::beginTransaction();
+    try {
+      $data = Karyawan::all();
+      foreach($data as $d){
+        $abs = Absen::get();
+        if(count($abs)>0){
+          $masuk = Absen::where("tanggal_absen", date("Y-m-d"))->where("id_karyawan", $d->user)->get();
+          if(count($masuk)==0){$this->absenBaru($d);}
+        }else{$this->absenBaru($d);}
+      }
+      DB::commit();
+    } catch (\Exception $e) {
+      DB::rollback();
+    }
   }
 }

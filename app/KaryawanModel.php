@@ -19,8 +19,7 @@ class KaryawanModel extends Authenticatable
     'password', 'remember_token'
   ];
 
-  public function setPasswordAttribute($val){
-    return $this->attributes['password'] = bcrypt($val);
-  }
+  // public function setPasswordAttribute($val){
+  //   return $this->attributes['password'] = bcrypt($val);
+  // }
 }
-

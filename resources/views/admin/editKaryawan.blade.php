@@ -19,14 +19,16 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                  <form action="/buat/karyawan/{{$data->user}}" method="post" enctype="multipart/form-data">
+                                  <form action="/karya/{{$data->user}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method("PUT")
                                     <table>
                                     <tr>
                                         <td>
                                         <label for="user">Username</label>
                                         </td>
                                         <td> : </td>
-                                        <td><input type="text" value="{{$data->user}}" class="form-control" id="user" name="user" placeholder="Username"></td>
+                                        <td><input type="text" value="{{$data->user}}" class="form-control" id="user" name="user" placeholder="Username" readonly></td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -57,20 +59,20 @@
                                         </td>
                                         <td> : </td>
                                         <td><textarea class="form-control" aria-label="With textarea" name="alamat" id="alamat">{{$data->alamat}}</textarea> </td>
-                                    </tr> 
+                                    </tr>
                                     <tr>
                                         <td>
                                             <label for="tanggal_lahir">Tanggal Lahir</label>
                                         </td>
                                         <td> : </td>
-                                        <td> <input class="form-control" type="date" name="tanggal_lahir" value="{{$data->tanggal_lahir}} id="tanggal_lahir" placeholder="Tanggal Lahir"></td>
+                                        <td> <input class="form-control" type="date" name="tanggal_lahir" value="{{$data->tanggal_lahir}}" id="tanggal_lahir" placeholder="Tanggal Lahir"></td>
                                     </tr>
                                     <tr>
                                         <td>
                                         <label for="nomor_telepon">Nomor Telepon</label>
                                         </td>
                                         <td> : </td>
-                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"></td> 
+                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"></td>
                                     </tr>
                                     </table>
                                     <label for="file">Masukkan foto ukuran 3x4</label><br>

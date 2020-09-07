@@ -64,10 +64,10 @@ class LoginController extends Controller
 
       // if (Auth::attempt($attempts, (bool) $req->remember)) {
       // }
-        if(Auth::guard("admin")->attempt(["user"=>$req->user, "password"=>$req->password])){
-          return redirect()->intended("/admin");
-        }
-      
+      if(Auth::guard("admin")->attempt(["user"=>$req->user, "password"=>$req->password])){
+        return redirect()->intended("/admin");
+      }
+
       return back()->with("err","Username / Password salah!");
     }
 
@@ -77,11 +77,9 @@ class LoginController extends Controller
     public function karyawanLogin(Request $req){
       $karyawan = Karyawan::find($req->user);
       if(Auth::guard("karyawan")->attempt(["user"=>$req->user, "password"=>$req->password])){
-        
         return redirect()->intended("/karyawan");
-      }else
-        // dd('error');
-       return back()->with("err","Username / Password salah!");
+      }
+      return back()->with("err","Username / Password salah!");
     }
 
 

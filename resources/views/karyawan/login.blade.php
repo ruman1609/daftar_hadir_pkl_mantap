@@ -32,7 +32,7 @@
                   <div class="input-group-prepend">
                     <i class="material-icons md-dark input-group-text">lock</i>
                   </div>
-                  <input type="password" class="form-control" name="password" id="pass" placeholder="Password" required>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                 </div>
               </div>
               <div class="form-group px-2">

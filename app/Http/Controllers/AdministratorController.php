@@ -49,18 +49,19 @@ class AdministratorController extends Controller
      */
     public function store(Request $req){
       DB::beginTransaction();
+      $valid = $req->validate([
+        "user" => ["required", "size:10", "unique:karyawan"],
+        "password" => ["required", "min:5"],
+        "nama" => ["required", "max:100", "regex:/[a-zA-Z]+$/u"],
+        "kelamin" => ["required"],
+        "alamat" => ["required"],
+        "tanggal_lahir" => ["required"],
+        "nomor_telepon" => ["required", "min:9", "max: 20"],
+        "foto" => ["mimes:jpeg,png", "required"]
+      ]);
+
+      // foto dimensions belum sempurna
       try {
-        $valid = $req->validate([
-          "user" => ["required", "size:10", "unique:karyawan"],
-          "password" => ["required", "min:5"],
-          "nama" => ["required", "max:100", "regex:/[a-zA-Z]+$/u"],
-          "kelamin" => ["required"],
-          "alamat" => ["required"],
-          "tanggal_lahir" => ["required"],
-          "nomor_telepon" => ["required", "min:9", "max: 13"],
-          "foto" => ["mimes:jpeg,png", "required"]
-        ]);
-          // foto dimensions belum sempurna
         $filename = $req->user.".".$req->foto->getClientOriginalExtension();
         $req->foto->storeAs("\public", $filename);
         $kar = new Karyawan;
@@ -79,7 +80,8 @@ class AdministratorController extends Controller
         return redirect("/admin")->with("berhasil", "Data Karyawan berhasil diinput");
       }catch (\Exception $e) {
         DB::rollback();
-        return back()->with("dbError", $e->getMessage());
+        $err = $e;
+        return back()->with("dbError", $err->getMessage());
       }
 
     }
@@ -143,7 +145,7 @@ class AdministratorController extends Controller
         }
         $kar->save();
         DB::commit();
-        return redirect()->route('karya.index');
+        return redirect()->route('karya.index')->with("Berhasil", "Berhasil di update");
       } catch (\Exception $e) {
         DB::rollback();
         return back()->with("dbError", "Terjadi kesalahan");
@@ -158,7 +160,16 @@ class AdministratorController extends Controller
      */
     public function destroy($id)
     {
-        //
+      DB::beginTransaction();
+      try {
+        Karyawan::destroy($id);
+        DB::commit();
+        return back()->with("Berhasil", "Delete Berhasil");
+      } catch (\Exception $e) {
+        DB::rollback();
+        return back()->with("dbError", "Terjadi kesalahan");
+      }
+
     }
     public function logout(){
       // Auth::logout(); // nda guna

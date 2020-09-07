@@ -22,7 +22,7 @@ class LogbookController extends Controller
         try{
             $logbook = Logbook::insert([
                 'tanggal_absen' => $request->tanggal,
-                // 'id_karyawan' => $request->id_karyawan,
+                'id_karyawan' => $request->id_karyawan,
                 'logbook' => $request->logbook
             ]);
 

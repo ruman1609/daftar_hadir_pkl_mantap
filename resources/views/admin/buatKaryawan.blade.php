@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                <form action="/buat/karyawan" method="post" enctype="multipart/form-data">
+                                <form action="/karya" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <table >
                                     <tr>
@@ -61,7 +61,7 @@
                                         </td>
                                         <td> : </td>
                                         <td><textarea class="form-control" aria-label="With textarea" name="alamat" id="alamat"></textarea> </td>
-                                    </tr> 
+                                    </tr>
                                     <tr>
                                         <td>
                                             <label for="tanggal_lahir">Tanggal Lahir</label>
@@ -74,18 +74,17 @@
                                         <label for="nomor_telepon">Nomor Telepon</label>
                                         </td>
                                         <td> : </td>
-                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"></td> 
+                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"></td>
                                     </tr>
                                 </table>
-                                <label for="file">Masukkan foto ukuran 3x4</label><br>
                                 <div class="custom-file">
                                         <input type="file" name="foto" class="custom-file-input" id="foto" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="foto">Choose file</label>
+                                        <label class="custom-file-label" for="foto">Masukkan Foto ukuran 3x4</label>
                                     </div>
                                  <br><br>
                                 <input type="submit" value="SELESAI" class="btn btn-success">
                               </form>
-                              @if(count($errors)>0)
+                              @if($errors->any())
                                 <ul class="error">
                                   @foreach($errors->all() as $e)
                                   <li>{{$e}}</li><br>
@@ -104,4 +103,3 @@
     </script>
 </main>
 @endsection
-    

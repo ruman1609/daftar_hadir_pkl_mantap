@@ -41,6 +41,7 @@ Route::middleware("auth:admin")->group(function(){
   Route::resource("rekap", "RekapController");
   Route::get("/rekap/{id}/{month}", "RekapController@liatBulan");
   Route::get("/pengumuman", "PengumumanController@show")->name('pengumuman.show');
+  Route::get("/admin/logout", "AdministratorController@logout")->name("admin.logout");
   Route::post("/pengumuman", "PengumumanController@post");
   Route::resource("karya", "AdministratorController");
 });
@@ -51,12 +52,9 @@ Route::middleware("auth:karyawan")->group(function(){
   Route::get("/karyawan","KaryawanController@index")->name('karyawan.dashboard');
   // absen
   Route::get('absen','KaryawanController@absen')->name('karyawan.absen');
+  Route::post('absen','KaryawanController@prosesAbsen')->name('karyawan.prosesAbsen');
   // logbook
-  Route::get('/logbook','LogbookController@tambah')->name('test');
+  Route::get('/logbook','LogbookController@tambah')->name('karyawan.logbook');
   Route::post('/logbook/add','LogbookController@add')->name('logbook.add');
-
-  // 
+  Route::get("/logout", "AdministratorController@logout");
 });
-
-
-Route::get("/logout", "AdministratorController@logout");

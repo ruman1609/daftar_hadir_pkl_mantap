@@ -1,11 +1,11 @@
 @if(session()->has("berhasil"))
 <script type="text/javascript">
-  alert("{{session()->get("berhasil")}}");
+alert("{{session()->get("berhasil")}}");
 </script>
 @endif
 @if(session()->has("dbERROR"))
 <script type="text/javascript">
-  alert("{{session()->get("dbERROR")}}");
+alert("{{session()->get("dbERROR")}}");
 </script>
 @endif
 
@@ -32,7 +32,7 @@
                                     <div class="callout callout-info">
                                         <small class="text-muted">Karyawan</small>
                                         <br>
-                                        <strong class="h4">{{$data->total()}}</strong>
+                                        <strong class="h4">{{ $data }}</strong>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
           //e.preventDefault();
           //e.returnValue = '';
       //}); buat dialog sebelum exit
-      
+
       //   e.preventDefault();
       //   e.returnValue = '';
       // });  // buat ada dialog sebelum exit

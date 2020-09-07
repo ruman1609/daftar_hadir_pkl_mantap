@@ -1,6 +1,17 @@
+
 @extends('layouts.admin')
 @section ('content')
 <main class="main">
+  @if(session()->has("Berhasil"))
+  <script type="text/javascript">
+  alert("{{session()->get("Berhasil")}}");
+</script>
+@endif
+@if(session()->has("dbError"))
+<script type="text/javascript">
+alert("{{session()->get("dbError")}}");
+</script>
+@endif
     <!-- Kasih tulisan selamat datang pake ini yan -->
     <!-- https://getbootstrap.com/docs/4.0/components/alerts/#dismissing -->
     <ol class="breadcrumb">
@@ -57,7 +68,7 @@
                                             <td><img src="{{$item->foto}}" alt="Foto" width="50px"></td>
                                             <td>
                                               <a href="{{route('karya.edit', $item->user)}}">EDIT</a>
-                                              <a href="/buat/karyawan/{{$item->user}}">DELETE</a>
+                                              <a href="{{route("karya.destroy", $item->user)}}">DELETE</a>
                                             </td>
                                           </tr>
                                         @endforeach
