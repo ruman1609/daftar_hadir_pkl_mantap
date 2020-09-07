@@ -52,25 +52,37 @@ class LoginController extends Controller
     }
     public function adminLogin(Request $req){
       $admin = Admin::find($req->user);
-      // if(Hash::check($req->password, $admin->password)){
-      //   $req->password = $admin->password;
-      //   dd($req->password);
+      // $this->validate($req,[
+      //   'user' => 'email|exists:users,email',
+      //   'password' => 'required',
+      // ]);
+
+      // $attempts = [
+      //   'user' => $req->user,
+      //   'password'=>$req->password,
+      // ];
+
+      // if (Auth::attempt($attempts, (bool) $req->remember)) {
       // }
-      if(Auth::guard("admin")->attempt(["user"=>$req->user, "password"=>$req->password])){
-        return redirect()->intended("/admin");
-      }
-      return back()->with("err","asw salah!");
+        if(Auth::guard("admin")->attempt(["user"=>$req->user, "password"=>$req->password])){
+          return redirect()->intended("/admin");
+        }
+      
+      return back()->with("err","Username / Password salah!");
     }
 
     public function showKaryawanForm(){
       return view("karyawan.login", ["url"=>"karyawan"]);
     }
     public function karyawanLogin(Request $req){
-      $pass = Hash::make($req->pass);
-      while(Hash::needsRehash($pass)){$pass = Hash::make($req->pass);}
-      if(Auth::guard("karyawan")->attempt(["id"=>$req->user, "pass"=>$pass], $req->get("remember"))){
+      $karyawan = Karyawan::find($req->user);
+      if(Auth::guard("karyawan")->attempt(["user"=>$req->user, "password"=>$req->password])){
+        
         return redirect()->intended("/karyawan");
-      }
-      return back()->withInput($req->only("id", "remember"));
+      }else
+        // dd('error');
+       return back()->with("err","Username / Password salah!");
     }
+
+
 }

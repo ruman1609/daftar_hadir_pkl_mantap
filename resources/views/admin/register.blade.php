@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
-    <form action="{{route("regisAdmin")}}" method="post">
+    <form action="{{route('regisAdmin')}}" method="post">
       @csrf
       <input type="text" name="user" value="admin@admin.com"> <br>
       <input type="password" name="password" value="admin"> <br>

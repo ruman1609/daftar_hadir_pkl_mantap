@@ -13,7 +13,7 @@ class DashboardAdminController extends Controller
   public function first(){
     DB::beginTransaction();
     try {
-      $data = Karyawan::get();
+      $data = Karyawan::paginate(10);
       foreach($data as $d){
         $abs = Absen::get();
         if(count($abs)>0){
@@ -22,7 +22,7 @@ class DashboardAdminController extends Controller
         }else{$this->absenBaru($d);}
       }
       DB::commit();
-      return view("admin.dashboardAdmin");
+      return view('admin.dashboardAdmin', compact('data'));
     } catch (\Exception $e) {
       DB::rollback();
       return view("admin.dashboardAdmin")->with("dbERROR", "Database tidak berjalan");

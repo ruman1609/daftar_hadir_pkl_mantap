@@ -1,33 +1,100 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Update Karyawan</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-  </head>
-  <body>
-    <form action="/buat/karyawan/{{$data->user}}" method="post" enctype="multipart/form-data">
-      @method("put")
-      @csrf
-      <input type="number" id="user" name="user" value="{{$data->user}}" readonly> <br>
-      <input type="password" id="password" name="password" placeholder="Password"> <br>
-      <input type="text" id="nama" name="nama" value="{{$data->nama}}"> <br>
-      <input type="text" name="kelamin" value="{{$data->kelamin}}" readonly> <br>
-      <textarea name="alamat" id="alamat" rows="8" cols="80" style="resize:none">{{$data->alamat}}</textarea><br><br>
-      <label for="file">Tanggal Lahir</label><br>
-      <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{$data->tanggal_lahir}}" readonly> <br><br>
-      <input type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"> <br> <br>
-      <label for="file">Masukkan foto ukuran 3x4</label><br>
-      <input type="file" name="foto" id="foto"> <br>
-      <label for="file">Jika tidak ingin ganti tidak usah diisi</label><br><br>
-      <input type="submit" value="UPDATE!">
-    </form>
-    @if(count($errors)>0)
-      <ul class="error">
-        @foreach($errors->all() as $e)
-        <li>{{$e}}</li><br>
-        @endforeach
-      </ul>
-    @endif
-  </body>
-</html>
+@extends('layouts.admin')
+@section ('content')
+<main class="main">
+    <!-- Kasih tulisan selamat datang pake ini yan -->
+    <!-- https://getbootstrap.com/docs/4.0/components/alerts/#dismissing -->
+    <ol class="breadcrumb">
+        <!-- <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active">Dashboard</li> -->
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Perbarui Data</h4>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                  <form action="/buat/karyawan/{{$data->user}}" method="post" enctype="multipart/form-data">
+                                    <table>
+                                    <tr>
+                                        <td>
+                                        <label for="user">Username</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td><input type="text" value="{{$data->user}}" class="form-control" id="user" name="user" placeholder="Username"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <label for="password">Password</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td> <input type="password" class="form-control" id="password" name="password" placeholder="Password"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <label for="nama">Nama</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td><input type="text" class="form-control" id="nama" name="nama" value="{{$data->nama}}" placeholder="Nama Karyawan"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <label for="kelamin">Jenis Kelamin</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td>
+                                        <input type="text" name="kelamin" value="{{$data->kelamin}}" class="form-control" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="alamat">Alamat</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td><textarea class="form-control" aria-label="With textarea" name="alamat" id="alamat">{{$data->alamat}}</textarea> </td>
+                                    </tr> 
+                                    <tr>
+                                        <td>
+                                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td> <input class="form-control" type="date" name="tanggal_lahir" value="{{$data->tanggal_lahir}} id="tanggal_lahir" placeholder="Tanggal Lahir"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <label for="nomor_telepon">Nomor Telepon</label>
+                                        </td>
+                                        <td> : </td>
+                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"></td> 
+                                    </tr>
+                                    </table>
+                                    <label for="file">Masukkan foto ukuran 3x4</label><br>
+                                    <div class="custom-file">
+                                        <input type="file" name="foto" class="custom-file-input" id="foto" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="foto">Choose file</label>
+                                    </div>
+                                     <br><br>
+                                    <input type="submit" value="PERBARUI" class="btn btn-success">
+                                  </form>
+                                  @if(count($errors)>0)
+                                    <ul class="error">
+                                      @foreach($errors->all() as $e)
+                                      <li>{{$e}}</li><br>
+                                      @endforeach
+                                    </ul>
+                                  @endif
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@endsection

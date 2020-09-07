@@ -59,7 +59,8 @@ class AdministratorController extends Controller
           "tanggal_lahir" => ["required"],
           "nomor_telepon" => ["required", "min:9", "max: 13"],
           "foto" => ["mimes:jpeg,png", "required"]
-        ]);  // foto dimensions belum sempurna
+        ]);
+          // foto dimensions belum sempurna
         $filename = $req->user.".".$req->foto->getClientOriginalExtension();
         $req->foto->storeAs("\public", $filename);
         $kar = new Karyawan;
@@ -96,7 +97,7 @@ class AdministratorController extends Controller
         $kar = Karyawan::find($id);
         $kar->delete();
         DB::commit();
-        return redirect("/buat/karyawan");
+        return redirect()->route('karya.index');
       } catch (\Exception $e) {
         DB::rollback();
         echo($e);
@@ -142,7 +143,7 @@ class AdministratorController extends Controller
         }
         $kar->save();
         DB::commit();
-        return redirect("/buat/karyawan");
+        return redirect()->route('karya.index');
       } catch (\Exception $e) {
         DB::rollback();
         return back()->with("dbError", "Terjadi kesalahan");

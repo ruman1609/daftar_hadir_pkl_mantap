@@ -21,31 +21,42 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
+//login
 Route::get("login/admin", "Auth\LoginController@showAdminForm")->name("loginAdmin");
 Route::get("login/karyawan", "Auth\LoginController@showKaryawanForm")->name("loginKaryawan");
 Route::get("register/admin", "Auth\RegisterController@showAdminForm")->name("regisAdmin");
 
 Route::post("login/admin", "Auth\LoginController@adminLogin")->name("prosesAdmin");
-Route::post("login/karyawan", "Auth\LoginController@karyawanLogin");
-Route::post("register/admin", "Auth\RegisterController@createAdmin")->name("prosesKaryawan");
+Route::post("login/karyawan", "Auth\LoginController@karyawanLogin")->name("prosesKaryawan");
+Route::post("register/admin", "Auth\RegisterController@createAdmin");
 
-
+//admin
 Route::middleware("auth:admin")->group(function(){
   Auth::routes();
-  Route::get("/admin", "DashboardAdminController@first");
+  Route::get("/admin", "DashboardAdminController@first")->name('admin.dashboard');
   Route::resource("rekap", "RekapController");
   Route::get("/rekap/{id}/{month}", "RekapController@liatBulan");
-  Route::get("/pengumuman", "PengumumanController@show");
+  Route::get("/pengumuman", "PengumumanController@show")->name('pengumuman.show');
   Route::post("/pengumuman", "PengumumanController@post");
-  Route::resource("buat/karyawan", "AdministratorController");
+  Route::resource("karya", "AdministratorController");
 });
+
 Route::middleware("auth:karyawan")->group(function(){
   Auth::routes();
   Route::view("/karyawan", "karyawan.dashboardKaryawan");
+  Route::get("/karyawan","KaryawanController@index")->name('karyawan.dashboard');
+  // absen
+  Route::get('absen','KaryawanController@absen')->name('karyawan.absen');
+  // logbook
+  Route::get('/logbook','LogbookController@tambah')->name('test');
+  Route::post('/logbook/add','LogbookController@add')->name('logbook.add');
+
+  // 
 });
+
 
 Route::get("/logout", "AdministratorController@logout");

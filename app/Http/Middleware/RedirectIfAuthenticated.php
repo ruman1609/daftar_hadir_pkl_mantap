@@ -21,8 +21,10 @@ class RedirectIfAuthenticated
         if ($guard == "admin" && Auth::guard($guard)->check()) {
             return redirect("/admin");
         }
-        if ($guard == "karyawan" && Auth::guard($guard)->check()) {
-            return redirect("/karyawan");
+        if ($guard == 'karyawan') {
+            if (Auth::guard($guard)->check()) {
+                   return redirect('/karyawan');
+            }
         }
         if (Auth::guard($guard)->check()) {
           return redirect(RouteServiceProvider::HOME);

@@ -21,12 +21,13 @@ class PengumumanController extends Controller
       $peng = Pengumuman::find(1);
       $peng->judul = $req->judul;
       $peng->isi = $req->isi;
+      dd($peng);
       $peng->save();
       DB::commit();
-      return redirect("/admin")->with("berhasil", "Pengumuman Berhasil di Update");
+      //return redirect("/admin")->with("berhasil", "Pengumuman Berhasil di Update");
     } catch (\Exception $e) {
       DB::rollback();
-      return back()->with("error", $e->getMessage());
+      //return back()->with("error", $e->getMessage());
     }
 
   }

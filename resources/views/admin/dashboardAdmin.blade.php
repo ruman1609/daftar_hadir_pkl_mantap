@@ -8,18 +8,42 @@
   alert("{{session()->get("dbERROR")}}");
 </script>
 @endif
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Beranda</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-  </head>
-  <body>
+
+@extends('layouts.admin')
+@section ('content')
+<main class="main">
     <!-- Kasih tulisan selamat datang pake ini yan -->
     <!-- https://getbootstrap.com/docs/4.0/components/alerts/#dismissing -->
-    <h1>Beranda</h1>
-    <nav>
+    <ol class="breadcrumb">
+        <!-- <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active">Dashboard</li> -->
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Aktivitas</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="callout callout-info">
+                                        <small class="text-muted">Karyawan</small>
+                                        <br>
+                                        <strong class="h4">{{$data->total()}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <nav>
       <ol>
         <li><a href="/buat/karyawan/create">Daftarkan Karyawan Baru</a></li>
         <li><a href="/buat/karyawan">Edit Data Karyawan</a></li>
@@ -27,14 +51,11 @@
         <li><a href="/pengumuman">Set Pengumuman</a></li>
         <li><a href="/logout">LOG OUT</a></li>
       </ol>
-    </nav>
+    </nav> -->
     <main>
 
     </main>
-    <footer>
-      <h3>Dibuat oleh 025 dan 061</h3>
-    </footer>
-    <script src="{{url("/own/js/bootstrap.js")}}">
+    <script src="{{url('/own/js/bootstrap.js')}}">
     </script>
     <script type="text/javascript">
       // window.addEventListener("beforeunload", function(event){
@@ -52,9 +73,14 @@
       //   }
       // }
       // window.addEventListener('beforeunload', function (e) {
+      // windows.addEventListener('befireunkiad', function (e){
+          //e.preventDefault();
+          //e.returnValue = '';
+      //}); buat dialog sebelum exit
+      
       //   e.preventDefault();
       //   e.returnValue = '';
       // });  // buat ada dialog sebelum exit
     </script>
-  </body>
-</html>
+</main>
+@endsection

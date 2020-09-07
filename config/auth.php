@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admin_p',
@@ -47,14 +52,9 @@ return [
         'karyawan' => [
             'driver' => 'session',
             'provider' => 'karyawan_p',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+        ]
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -73,18 +73,20 @@ return [
     |
     */
 
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
         'admin_p' => [
             'driver' => 'eloquent',
             'model' => App\AdminModel::class,
         ],
         'karyawan_p' => [
             'driver' => 'eloquent',
-            'model' => App\Karyawan::class,
+            'model' => App\KaryawanModel::class,
         ],
 
         // 'users' => [
@@ -114,6 +116,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'karyawan_p' => [
+            'provider' => 'karyawan_p',
+            'table' => 'password_reset',
+            'expire' => 60,
         ],
     ],
 
