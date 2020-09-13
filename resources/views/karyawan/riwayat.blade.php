@@ -40,7 +40,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="material-icons" style="font-size: 1rem">login</i>
-                LOG OUT
+                LOGOUT
               </a>
             </li>
           </ul>
