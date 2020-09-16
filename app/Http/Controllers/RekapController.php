@@ -83,6 +83,19 @@ class RekapController extends Controller
 
     }
 
+    public function rekapKaryawan (){
+      DB::beginTransaction();
+      try {
+        $abs = Absen::join("karyawan", "karyawan.user", "=", "absen.id_karyawan")->paginate(5);
+       // dd($abs);
+        DB::commit();
+        return view("karyawan.riwayat", ["data"=>$abs]);
+      } catch (\Exception $e) {
+        DB::rollback();
+        return $e;
+      }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

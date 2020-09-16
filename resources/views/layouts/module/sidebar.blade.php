@@ -23,6 +23,13 @@
                     </a>
                 </li>
             </ul>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="/rekap">
+                        <i class="nav-icon icon-puzzle"></i> Rekap
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route("admin.logout")}}">

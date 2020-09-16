@@ -53,32 +53,30 @@
       </nav>
       <div class="container">
         <div id="parent" class="p-3">
+        @foreach($data as $item)
           <div class="card my-2">
             <div class="card-header" id="head1" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1" onclick="ubahArr(1)">
               <strong>
-                TANGGAL
+              {{$item->tanggal_absen}}
                 <i class="material-icons" id="icon1" style="float: right;">keyboard_arrow_down</i>
               </strong>
             </div>
             <div class="collapse" id="collapse1" aria-labelledby="head1" data-parent="#parent">
               <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="card-text">
+                @if($item->kehadiran==1)
+                  Hadir
+                @else
+                  Tidak ada keterangan
+                @endif
+                </p>
               </div>
             </div>
           </div>
-          <div class="card my-2">
-            <div class="card-header" id="head2" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2" onclick="ubahArr(2)">
-              <strong>
-                TANGGAL
-                <i class="material-icons" id="icon2" style="float: right;">keyboard_arrow_down</i>
-              </strong>
-            </div>
-            <div class="collapse" id="collapse2" aria-labelledby="head2" data-parent="#parent">
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-            </div>
+        @endforeach
+        {{$data->links()}}
           </div>
+          
         </div>
       </div>
     </div>

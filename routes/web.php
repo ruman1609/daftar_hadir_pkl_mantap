@@ -39,6 +39,7 @@ Route::middleware("auth:admin")->group(function(){
   Auth::routes();
   Route::get("/admin", "DashboardAdminController@first")->name('admin.dashboard');
   Route::resource("rekap", "RekapController");
+  Route::get("/rekap/hasil","RekapController@show");
   Route::get("/rekap/{id}/{month}", "RekapController@liatBulan");
   Route::get("/pengumuman", "PengumumanController@show")->name('pengumuman.show');
   Route::get("/admin/logout", "AdministratorController@logout")->name("admin.logout");
@@ -57,4 +58,6 @@ Route::middleware("auth:karyawan")->group(function(){
   Route::get('/logbook','LogbookController@tambah')->name('karyawan.logbook');
   Route::post('/logbook/add','LogbookController@add')->name('logbook.add');
   Route::get("/logout", "AdministratorController@logout");
+  //rekap
+  Route::get('/rekapKaryawan','RekapController@rekapKaryawan')->name('karyawan.s');
 });
