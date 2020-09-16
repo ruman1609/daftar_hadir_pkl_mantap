@@ -14,11 +14,11 @@ class CreateTableLogbook extends Migration
     public function up()
     {
         Schema::create('logbook', function (Blueprint $table) {
+          $table->bigIncrements("id");
           $table->date("tanggal_absen");
           $table->string("id_karyawan");
           $table->text("logbook");
           $table->timestamps();
-          $table->primary("tanggal_absen");
         });
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\KaryawanModel as Karyawan;
 use App\AbsenModel as Absen;
+use App\LogbookModel as Logbook;
 
 class RekapController extends Controller
 {
@@ -86,8 +87,7 @@ class RekapController extends Controller
     public function rekapKaryawan (){
       DB::beginTransaction();
       try {
-        $abs = Absen::join("karyawan", "karyawan.user", "=", "absen.id_karyawan")->paginate(5);
-       // dd($abs);
+        $abs = Logbook::join("karyawan", "karyawan.user", "=", "logbook.id_karyawan")->orderBy("logbook.created_at", "desc")->paginate(5);
         DB::commit();
         return view("karyawan.riwayat", ["data"=>$abs]);
       } catch (\Exception $e) {

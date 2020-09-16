@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\LogbookModel as Logbook;
 use App\KaryawanModel as Karyawan;
-
+use Auth;
 
 class LogbookController extends Controller
 {
@@ -15,17 +15,14 @@ class LogbookController extends Controller
     }
 
     public function add(Request $request){
-        // $id = Auth::user()->user;
-        // dd($id);
-
         DB::beginTransaction();
+        $id = Auth::user()->user;
         try{
-            $logbook = Logbook::insert([
-                'tanggal_absen' => $request->tanggal,
-                'id_karyawan' => $request->id_karyawan,
-                'logbook' => $request->logbook
-            ]);
-
+            $logbook = new Logbook();
+            $logbook->tanggal_absen = $request->tanggal;
+            $logbook->id_karyawan = $id;
+            $logbook->logbook = $request->logbook;
+            $logbook->save();
             DB::commit();
             $request->session()->flash('messages','Berhasil Dibuat');
             $request->session()->flash('type','success');

@@ -24,7 +24,7 @@ alert("{{session()->get("Berhasil")}}")
                     @if($sudah)
                       <button type="submit" class="btn btn-success" disabled id="submit">SUDAH ABSEN</button>
                     @else
-                      <button type="submit" class="btn btn-danger" disabled id="submit">WAKTU ABSEN SUDAH LEWAT</button>
+                      <button type="submit" class="btn btn-danger" disabled id="submit">WAKTU ABSEN HABIS</button>
                     @endif
                   @else
                     @if($sudah)

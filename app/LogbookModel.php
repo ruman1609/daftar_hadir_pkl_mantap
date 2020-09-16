@@ -9,9 +9,5 @@ class LogbookModel extends Model
 {
     //
     protected $table = "logbook";
-    protected $fillable = ['logbook'];
-
-    public function karyawan(){
-        return $this->belongsTo(Karyawan::class, 'user');
-    }
+    protected $fillable = ['logbook', "id_karyawan", "tanggal_absen"];
 }
