@@ -60,7 +60,7 @@ class RekapController extends Controller
     {
       DB::beginTransaction();
       try {
-        $abs = Karyawan::join("absen", "karyawan.user", "=", "absen.id_karyawan")->leftJoin("logbook", "karyawan.user", "=", "logbook.id_karyawan")
+        $abs = Absen::join("karyawan", "karyawan.user", "=", "absen.id_karyawan")->join("logbook", "absen.tanggal_absen", "=", "logbook.tanggal_absen")
         ->where("user", $id)->select("karyawan.nama", "absen.*", "logbook.logbook")->orderBy("absen.tanggal_absen", "desc")->paginate(5);
         // join("nama tabel yang dituju", "trigger parent", "trigger yang dituju")
         // $bulan = Absen::where("id_karyawan", $id)->select(DB::raw("month(tanggal_absen) bulan"))->orderBy("bulan", "asc")->distinct()->get();
@@ -88,7 +88,7 @@ class RekapController extends Controller
     public function rekapKaryawan (){
       DB::beginTransaction();
       try {
-        $abs = Karyawan::join("absen", "karyawan.user", "=", "absen.id_karyawan")->leftJoin("logbook", "karyawan.user", "=", "logbook.id_karyawan")
+        $abs = Absen::join("karyawan", "karyawan.user", "=", "absen.id_karyawan")->join("logbook", "absen.tanggal_absen", "=", "logbook.tanggal_absen")
         ->where("user", Auth::user()->user)->select("karyawan.nama", "absen.*", "logbook.logbook")->orderBy("absen.tanggal_absen", "desc")->paginate(5);
         DB::commit();
         return view("karyawan.riwayat", ["data"=>$abs]);
