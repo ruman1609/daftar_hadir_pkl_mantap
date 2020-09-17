@@ -8,21 +8,22 @@
 	<link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/simple-line-icons.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-	<link href="{{ asset('assets/vendors/pace-progress/css/pace.min.css') }}" rel="stylesheet"> 
+  <link href="{{url('/own/css/material.css')}}" rel="stylesheet">
+	<link href="{{ asset('assets/vendors/pace-progress/css/pace.min.css') }}" rel="stylesheet">
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-  
+
     <!--header-->
     @include('layouts.module.header')
     <!--sidebar-->
     <div class="app-body" id="dw">
         <div class="sidebar">
             @include('layouts.module.sidebar')
-          
+
             <button class="sidebar-minimizer brand-minimizer" type="button"></button>
         </div>
         @yield('content')
-      
+
     </div>
     <!--footer-->
     <footer class="app-footer">

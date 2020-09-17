@@ -25,14 +25,12 @@ alert("{{session()->get("dbError")}}");
                         <div class="card-header">
                             <h4 class="card-title">Rekapitulasi Daftar Kehadiran</h4>
                         </div>
-                        <div class="card-header">
-                        </div>
                         <hr>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
                                 <table class="table">
-                                
+
                                         <thead class="thead-dark">
                                           <tr>
                                             <th>#</th>

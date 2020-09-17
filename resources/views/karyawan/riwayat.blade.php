@@ -8,14 +8,24 @@
       <div id="parent" class="p-3">
       @foreach($data as $item)
         <div class="card my-2">
-          <div class="card-header" id="head{{$loop->index}}" data-toggle="collapse" data-target="#collapse{{$loop->index}}" aria-expanded="false" aria-controls="collapse{{$loop->index}}" onclick="ubahArr(1)">
+          <div class="card-header" id="head{{$loop->index}}" data-toggle="collapse" data-target="#collapse{{$loop->index}}" aria-expanded="false" aria-controls="collapse{{$loop->index}}" onclick="ubahArr({{$loop->index}})">
             <strong>
-            {{$item->tanggal_absen}}
+              {{$item->tanggal_absen}}
               <i class="material-icons" id="icon{{$loop->index}}" style="float: right;">keyboard_arrow_down</i>
             </strong>
           </div>
           <div class="collapse" id="collapse{{$loop->index}}" aria-labelledby="head{{$loop->index}}" data-parent="#parent">
             <div class="card-body">
+              <h5>Status Kehadiran</h5>
+              <p class="card-text">
+                @if($item->kehadiran==1)
+                  Hadir
+                @else
+                  Tidak ada keterangan
+                @endif
+              </p>
+              <hr>
+              <h5>Logbook</h5>
               <p class="card-text">{{$item->logbook}}</p>
             </div>
           </div>

@@ -59,30 +59,31 @@ class RekapController extends Controller
     {
       DB::beginTransaction();
       try {
-        $abs = Absen::join("karyawan", "karyawan.user", "=", "absen.id_karyawan")  // join("nama tabel yang dituju", "trigger parent", "trigger yang dituju")
-        ->where("id_karyawan", $id)->select("karyawan.nama", "absen.*")->orderBy("absen.tanggal_absen", "asc")->paginate(5);
-        $bulan = Absen::where("id_karyawan", $id)->select(DB::raw("month(tanggal_absen) bulan"))->orderBy("bulan", "asc")->distinct()->get();
+        $abs = Karyawan::join("absen", "karyawan.user", "=", "absen.id_karyawan")->join("logbook", "karyawan.user", "=", "logbook.id_karyawan")
+        ->where("user", $id)->select("karyawan.nama", "absen.*", "logbook.logbook")->orderBy("absen.tanggal_absen", "asc")->paginate(5);
+        dd($abs);
+        // join("nama tabel yang dituju", "trigger parent", "trigger yang dituju")
+        // $bulan = Absen::where("id_karyawan", $id)->select(DB::raw("month(tanggal_absen) bulan"))->orderBy("bulan", "asc")->distinct()->get();
         DB::commit();
-        return view("admin.hasilRekap", ["data"=>$abs, "bulan"=>$bulan]);
+        return view("admin.hasilRekap", ["data"=>$abs]);
       } catch (\Exception $e) {
         DB::rollback();
         return $e;
       }
     }
-    public function liatBulan($id, $month){
-      DB::beginTransaction();
-      try {
-        $abs = Absen::where(DB::raw("month(tanggal_absen)"), $month)->where("id_karyawan", $id)->paginate(5);
-        $bulan = Absen::where("id_karyawan", $id)->select(DB::raw("month(tanggal_absen) bulan"))->orderBy("bulan", "asc")->distinct()->get();
-        // kalau ada month mesti DB::raw()
-        DB::commit();
-        return view("admin.hasilRekap", ["data"=>$abs, "bulan"=>$bulan, "back"=>"BACK"]);
-      } catch (\Exception $e) {
-        DB::rollback();
-        return $e;
-      }
-
-    }
+    // public function liatBulan($id, $month){
+    //   DB::beginTransaction();
+    //   try {
+    //     $abs = Absen::where(DB::raw("month(tanggal_absen)"), $month)->where("id_karyawan", $id)->paginate(5);
+    //     $bulan = Absen::where("id_karyawan", $id)->select(DB::raw("month(tanggal_absen) bulan"))->orderBy("bulan", "asc")->distinct()->get();
+    //     // kalau ada month mesti DB::raw()
+    //     DB::commit();
+    //     return view("admin.hasilRekap", ["data"=>$abs, "bulan"=>$bulan, "back"=>"BACK"]);
+    //   } catch (\Exception $e) {
+    //     DB::rollback();
+    //     return $e;
+    //   }
+    // }
 
     public function rekapKaryawan (){
       DB::beginTransaction();

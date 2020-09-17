@@ -11,12 +11,6 @@
 alert("{{session()->get("dbError")}}");
 </script>
 @endif
-    <!-- Kasih tulisan selamat datang pake ini yan -->
-    <!-- https://getbootstrap.com/docs/4.0/components/alerts/#dismissing -->
-    <ol class="breadcrumb">
-        <!-- <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item active">Dashboard</li> -->
-    </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
             <div class="row">
@@ -30,36 +24,31 @@ alert("{{session()->get("dbError")}}");
                             <div class="row">
                                 <div class="col-md-3">
                                   @if(count($data) > 0)
-                                    <ol>
-                                      @if(isset($back))
-                                        <li>
-                                          <a href="/rekap/{{$data[0]->id_karyawan}}">BACK</a>
-                                        </li>
-                                      @endif
-                                      <!-- @foreach($bulan as $bul)
-                                          <li>
-                                            <a href="/rekap/{{$data[0]->id_karyawan}}/{{$bul->bulan}}">{{$bul->bulan}}</a>
-                                          </li>
-                                      @endforeach -->
-                                    </ol>
-                                    <table class="table">
-                                      <tr>
-                                        <th>TANGGAL</th>
-                                        <th>KEHADIRAN</th>
-                                      </tr>
-                                      @foreach($data as $item)
-                                        <tr>
-                                          <td>{{$item->tanggal_absen}}</td>
-                                          <td>
+                                  @foreach($data as $item)
+                                    <div class="card my-2">
+                                      <div class="card-header" id="head{{$loop->index}}" data-toggle="collapse" data-target="#collapse{{$loop->index}}" aria-expanded="false" aria-controls="collapse{{$loop->index}}" onclick="ubahArr({{$loop->index}})">
+                                        <strong>
+                                          {{$item->tanggal_absen}}
+                                          <i class="material-icons" id="icon{{$loop->index}}" style="float: right;">keyboard_arrow_down</i>
+                                        </strong>
+                                      </div>
+                                      <div class="collapse" id="collapse{{$loop->index}}" aria-labelledby="head{{$loop->index}}" data-parent="#parent">
+                                        <div class="card-body">
+                                          <h5>Status Kehadiran</h5>
+                                          <p class="card-text">
                                             @if($item->kehadiran==1)
                                               Hadir
                                             @else
                                               Tidak ada keterangan
                                             @endif
-                                          </td>
-                                        </tr>
-                                      @endforeach
-                                    </table>
+                                          </p>
+                                          <hr>
+                                          <h5>Logbook</h5>
+                                          <p class="card-text">{{$item->logbook}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  @endforeach
                                     {{$data->links()}}
                                   @endif
                               </div>
@@ -70,7 +59,6 @@ alert("{{session()->get("dbError")}}");
             </div>
         </div>
     </div>
-    <script src="{{url('/own/js/bootstrap.js')}}">
-    </script>
+    <script src="{{url("/own/js/riwayat.js")}}"></script>
 </main>
 @endsection
