@@ -2,7 +2,7 @@
 @section("content")
   <div class="isi">
     <nav class="navbar navbar-light bg-light inti">
-      <span class="navbar-brand">Riwayat Logbook</span>
+      <span class="navbar-brand">Riwayat Karyawan</span>
     </nav>
     <div class="container">
       <div id="parent" class="p-3">
