@@ -72,7 +72,7 @@
                                         <label for="nomor_telepon">Nomor Telepon</label>
                                         </td>
                                         <td> : </td>
-                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon"></td>
+                                        <td><input class="form-control" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon" value="{{$data->nomor_telepon}}"></td>
                                     </tr>
                                     </table>
                                     <label for="file">Masukkan foto ukuran 3x4</label><br>
@@ -80,6 +80,7 @@
                                         <input type="file" name="foto" class="custom-file-input" id="foto" aria-describedby="inputGroupFileAddon01">
                                         <label class="custom-file-label" for="foto">Choose file</label>
                                     </div>
+                                    <label for="file">Jika tidak ingin mengganti foto, bisa dilewatkan</label><br>
                                      <br><br>
                                     <input type="submit" value="PERBARUI" class="btn btn-success">
                                   </form>

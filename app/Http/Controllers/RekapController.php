@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\KaryawanModel as Karyawan;
 use App\AbsenModel as Absen;
 use App\LogbookModel as Logbook;
+use Auth;
 
 class RekapController extends Controller
 {
@@ -59,9 +60,8 @@ class RekapController extends Controller
     {
       DB::beginTransaction();
       try {
-        $abs = Karyawan::join("absen", "karyawan.user", "=", "absen.id_karyawan")->join("logbook", "karyawan.user", "=", "logbook.id_karyawan")
+        $abs = Karyawan::join("absen", "karyawan.user", "=", "absen.id_karyawan")->leftJoin("logbook", "karyawan.user", "=", "logbook.id_karyawan")
         ->where("user", $id)->select("karyawan.nama", "absen.*", "logbook.logbook")->orderBy("absen.tanggal_absen", "asc")->paginate(5);
-        dd($abs);
         // join("nama tabel yang dituju", "trigger parent", "trigger yang dituju")
         // $bulan = Absen::where("id_karyawan", $id)->select(DB::raw("month(tanggal_absen) bulan"))->orderBy("bulan", "asc")->distinct()->get();
         DB::commit();
@@ -88,7 +88,8 @@ class RekapController extends Controller
     public function rekapKaryawan (){
       DB::beginTransaction();
       try {
-        $abs = Logbook::join("karyawan", "karyawan.user", "=", "logbook.id_karyawan")->orderBy("logbook.created_at", "desc")->paginate(5);
+        $abs = Karyawan::join("absen", "karyawan.user", "=", "absen.id_karyawan")->leftJoin("logbook", "karyawan.user", "=", "logbook.id_karyawan")
+        ->where("user", Auth::user()->user)->select("karyawan.nama", "absen.*", "logbook.logbook")->orderBy("absen.tanggal_absen", "asc")->paginate(5);
         DB::commit();
         return view("karyawan.riwayat", ["data"=>$abs]);
       } catch (\Exception $e) {

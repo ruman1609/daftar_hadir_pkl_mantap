@@ -37,4 +37,8 @@
     </div>
   </div>
   <script src="{{url("/own/js/riwayat.js")}}"></script>
+  <script type="text/javascript">
+    let as = document.querySelector(".rekap");
+    as.classList.add("active");
+  </script>
 @endsection

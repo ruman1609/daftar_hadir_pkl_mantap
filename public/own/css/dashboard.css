@@ -20,6 +20,9 @@ img{
   color: white !important;
 }
 .nav-link:hover{
+  background-color: rgb(125, 125, 125) !important;
+}
+.active{
   background-color: white !important;
   color: blue !important;
 }

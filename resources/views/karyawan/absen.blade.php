@@ -22,15 +22,15 @@ alert("{{session()->get("Berhasil")}}")
                   @csrf
                   @if($disable)
                     @if($sudah)
-                      <button type="submit" class="btn btn-success" disabled id="submit">SUDAH ABSEN</button>
+                      <button type="submit" class="btn btn-success" disabled id="submit">SUDAH ISI DAFTAR HADIR</button>
                     @else
-                      <button type="submit" class="btn btn-danger" disabled id="submit">WAKTU ABSEN HABIS</button>
+                      <button type="submit" class="btn btn-danger" disabled id="submit">WAKTU ISI DAFTAR HADIR HABIS</button>
                     @endif
                   @else
                     @if($sudah)
-                      <button type="submit" class="btn btn-success" disabled id="submit">SUDAH ABSEN</button>
+                      <button type="submit" class="btn btn-success" disabled id="submit">SUDAH ISI DAFTAR HADIR</button>
                     @else
-                      <button type="submit" class="btn btn-primary" id="submit">ABSEN</button>
+                      <button type="submit" class="btn btn-primary" id="submit">ISI DAFTAR HADIR</button>
                     @endif
                   @endif
                 </form>
@@ -40,4 +40,8 @@ alert("{{session()->get("Berhasil")}}")
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      let as = document.querySelector(".absen");
+      as.classList.add("active");
+    </script>
 @endsection

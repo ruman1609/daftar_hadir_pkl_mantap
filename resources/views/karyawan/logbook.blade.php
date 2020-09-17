@@ -23,4 +23,8 @@
       </div>
     </div>
     <script src="{{url('/own/js/bootstrap.js')}}"></script>
+    <script type="text/javascript">
+      let as = document.querySelector(".logbook");
+      as.classList.add("active");
+    </script>
 @endsection

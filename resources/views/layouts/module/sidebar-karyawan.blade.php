@@ -9,19 +9,19 @@
       <div class="navbar-collapse collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('karyawan.absen')}}">
+            <a class="nav-link absen" href="{{route('karyawan.absen')}}">
               <i class="material-icons" style="font-size: 1rem">done</i>
               ABSEN
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('karyawan.logbook')}}">
+            <a class="nav-link logbook" href="{{route('karyawan.logbook')}}">
               <i class="material-icons" style="font-size: 1rem">book</i>
               LOGBOOK
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('karyawan.s')}}">
+            <a class="nav-link rekap" href="{{route('karyawan.s')}}">
               <i class="material-icons" style="font-size: 1rem">history</i>
               RIWAYAT
             </a>
