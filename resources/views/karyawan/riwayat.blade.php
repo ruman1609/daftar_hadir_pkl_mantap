@@ -26,7 +26,11 @@
               </p>
               <hr>
               <h5>Logbook</h5>
-              <p class="card-text">{{$item->logbook}}</p>
+              @if(isset($item->logbook))
+                <p class="card-text">{{$item->logbook}}</p>
+              @else
+                <p class="card-text">-</p>
+              @endif
             </div>
           </div>
         </div>

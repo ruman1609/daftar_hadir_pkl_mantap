@@ -30,8 +30,8 @@ class KaryawanController extends Controller
 
     public function absen(){
       $abs = Absen::where("tanggal_absen", date("Y-m-d"))->where("id_karyawan", Auth::user()->user)->first();
-      $start = "08:00:00";
-      $end = "09:00:00";
+      $start = "10:00:00";
+      $end = "11:00:00";
       $now = date("H:m:s");
       $disable = false;
       $sudah = $abs->kehadiran;
