@@ -31,4 +31,4 @@ Karyawan pada site ini akan mengisi daftar kehadiran (sesuai dengan jam yang ber
   
   
   
-##### Terima kasih telah melihat dan harapan saya kalian mampu memberi masukkan ke depan agar jika saya atau @horiraihan akan mengembangkan sistem serupa dapat mengimplementasikannya menjadi lebih baik.  Salam
+##### Terima kasih telah mampir kemari dan harapan saya kalian mampu memberi masukkan ke depan agar jika saya atau @horiraihan akan mengembangkan sistem serupa dapat mengimplementasikannya menjadi lebih baik.  Salam
